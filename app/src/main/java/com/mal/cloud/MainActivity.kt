@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.mal.cloud.databinding.ActivityMainBinding
 import com.mal.cloud.future_auth.presentation.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
@@ -14,10 +15,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        findViewById<TextView>(R.id.text_view).setOnClickListener {
-            (it as TextView).text = Random.nextInt().toString()
+        binding.textView.setOnClickListener {
+            binding.textView.text = Random.nextInt().toString()
         }
 
         authViewModel.login("Bob", "12345")
