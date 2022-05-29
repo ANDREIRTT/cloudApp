@@ -8,6 +8,7 @@ import com.mal.cloud.future_auth.domain.dto.AuthErrorData
 import com.mal.cloud.future_auth.domain.dto.AuthResponse
 import com.mal.cloud.future_auth.domain.dto.UserData
 import com.mal.cloud.future_auth.domain.dto.UserRole
+import com.mal.cloud.future_auth.domain.repository.AuthDataRepository
 import com.mal.cloud.future_auth.domain.repository.AuthRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authService: AuthService,
+    private val authDataRepository: AuthDataRepository,
     private val mediaType: MediaType,
     private val gson: Gson,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -73,7 +75,9 @@ class AuthRepositoryImpl @Inject constructor(
     private fun parseResponse(response: Response<AuthResponseData>): AuthResponse {
         return when {
             response.isSuccessful && response.body() != null -> {
-                AuthResponse.Success(UserData(response.body()!!.token))
+                val userData = UserData(response.body()!!.token)
+                authDataRepository.saveUserData(userData)
+                AuthResponse.Success(userData)
             }
             response.errorBody() != null -> {
                 val authErrorResponse = getAuthErrorResponse(response.errorBody()?.string()!!)
