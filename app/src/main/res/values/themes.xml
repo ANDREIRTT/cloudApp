@@ -16,9 +16,20 @@
         <item name="android:windowBackground">@color/blue_50</item>
         <item name="android:textColor">@color/gray_900</item>
         <item name="android:textColorSecondary">@color/gray_700</item>
+
+        <item name="bottomSheetDialogTheme">@style/bottomSheetStyle</item>
     </style>
 
     <style name="appIconStyle">
         <item name="android:src">@drawable/ic_cloud_light</item>
+    </style>
+
+    <style name="bottomSheetStyle" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:textColorSecondary">@color/gray_700</item>
+
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 </resources>

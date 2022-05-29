@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">cloud</string>
+    <string name="app_name">YouCloud</string>
+    <string name="app_description">Твое собственное хранилище</string>
+
+    <string name="register_action">Зарегистриваться</string>
+    <string name="auth_action">Авторизоваться</string>
+
+    <string name="log_in">Авторизация</string>
+    <string name="sing_up">Регистрация</string>
+
+    <string name="login_hint">Логин</string>
+    <string name="auth_hint">Пароль</string>
+    <string name="continue_auth">Продолжить</string>
 </resources>

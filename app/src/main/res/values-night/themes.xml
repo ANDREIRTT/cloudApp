@@ -13,6 +13,8 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
         <item name="materialButtonStyle">@style/appButtonStyle</item>
+
+        <item name="bottomSheetDialogTheme">@style/bottomSheetStyle</item>
     </style>
 
     <style name="appIconStyle">
@@ -22,5 +24,11 @@
     <style name="appButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/orange_500</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="bottomSheetStyle" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="colorPrimary">@color/orange_500</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 </resources>
