@@ -1,13 +1,12 @@
 package com.mal.cloud
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.mal.cloud.databinding.ActivityMainBinding
 import com.mal.cloud.future_auth.presentation.AuthViewModel
+import com.mal.cloud.future_auth.presentation.fragment.AuthFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,10 +17,6 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.textView.setOnClickListener {
-            binding.textView.text = Random.nextInt().toString()
-        }
-
-        authViewModel.login("Bob", "12345")
+        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, AuthFragment()).commit()
     }
 }
