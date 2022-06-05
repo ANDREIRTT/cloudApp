@@ -19,6 +19,7 @@ class FragmentModule {
     }
 
     @Provides
+    @com.mal.cloud.core.di.fragmentQualifiers.AuthFragment
     fun getAuthFragment(): Fragment {
         return AuthFragment()
     }
