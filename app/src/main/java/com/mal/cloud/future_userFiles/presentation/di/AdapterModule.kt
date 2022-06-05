@@ -2,6 +2,7 @@ package com.mal.cloud.future_userFiles.presentation.di
 
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.load.model.LazyHeaders
 import com.mal.cloud.future_userFiles.domain.dto.FilesInfo
 import com.mal.cloud.future_userFiles.presentation.fileItemAdapter.FilesAdapter
 import com.mal.cloud.future_userFiles.presentation.fileLoadStateAdapter.FilesLoadStateAdapter
@@ -17,8 +18,8 @@ class AdapterModule {
 
     @Provides
     @FragmentScoped
-    fun getFilesAdapter(filesDiffUtil: DiffUtil.ItemCallback<FilesInfo>): FilesAdapter {
-        return FilesAdapter(filesDiffUtil)
+    fun getFilesAdapter(filesDiffUtil: DiffUtil.ItemCallback<FilesInfo>, lazyHeaders: LazyHeaders): FilesAdapter {
+        return FilesAdapter(filesDiffUtil, lazyHeaders)
     }
 
     @Provides

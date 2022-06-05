@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.bumptech.glide.load.model.LazyHeaders
 import com.mal.cloud.databinding.ViewHolderFileImageBinding
 import com.mal.cloud.databinding.ViewHolderFileUnidentifiedBinding
 import com.mal.cloud.future_userFiles.data.network.pojo.FileType
@@ -15,7 +16,8 @@ import com.mal.cloud.future_userFiles.presentation.fileItemAdapter.viewHolder.Fi
 import javax.inject.Inject
 
 class FilesAdapter @Inject constructor(
-    filesDiffUtil: DiffUtil.ItemCallback<FilesInfo>
+    filesDiffUtil: DiffUtil.ItemCallback<FilesInfo>,
+    private val lazyHeaders: LazyHeaders
 ) : PagingDataAdapter<FilesInfo, BaseViewHolder>(filesDiffUtil) {
     override fun getItemViewType(position: Int): Int {
         return getItem(position)?.fileType?.ordinal ?: 0
@@ -41,7 +43,7 @@ class FilesAdapter @Inject constructor(
                 parent,
                 false
             )
-        return FileImageViewHolder(binding)
+        return FileImageViewHolder(binding, lazyHeaders)
     }
 
     private fun createUnidentifiedViewHolder(parent: ViewGroup): BaseViewHolder {

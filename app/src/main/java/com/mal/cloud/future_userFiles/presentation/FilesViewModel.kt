@@ -10,5 +10,5 @@ class FilesViewModel @Inject constructor(
     private val filesUseCase: UserFilesUseCase
 ) : ViewModel() {
 
-    val liveData = filesUseCase.invoke(1)
+    val liveData = filesUseCase.invoke(10)
 }

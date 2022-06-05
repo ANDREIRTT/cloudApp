@@ -22,7 +22,7 @@ class RetrofitModule {
     @Provides
     fun retrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://mal-dev.ru")
+            .baseUrl(ROOT_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()

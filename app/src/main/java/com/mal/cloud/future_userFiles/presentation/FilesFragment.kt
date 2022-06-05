@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mal.cloud.databinding.FragmentFilesBinding
 import com.mal.cloud.future_userFiles.presentation.fileItemAdapter.FilesAdapter
@@ -63,7 +64,7 @@ class FilesFragment : Fragment() {
         }
 
         binding.recyclerView.adapter = concatAdapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
     }
 
 
