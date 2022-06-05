@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mal.cloud.databinding.FragmentFilesBinding
-import com.mal.cloud.future_userFiles.presentation.adapter.FilesAdapter
+import com.mal.cloud.future_userFiles.presentation.fileItemAdapter.FilesAdapter
+import com.mal.cloud.future_userFiles.presentation.fileLoadStateAdapter.FilesLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -19,6 +22,12 @@ class FilesFragment : Fragment() {
 
     @Inject
     lateinit var filesAdapter: FilesAdapter
+
+    @Inject
+    lateinit var concatAdapter: ConcatAdapter
+
+    @Inject
+    lateinit var filesLoadStateAdapter: FilesLoadStateAdapter
 
     private val viewModel: FilesViewModel by viewModels()
 
@@ -34,14 +43,28 @@ class FilesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.recyclerView.adapter = filesAdapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        initRecyclerView()
 
         lifecycleScope.launchWhenCreated {
+
             viewModel.liveData.collectLatest {
                 filesAdapter.submitData(it)
             }
         }
-
     }
+
+    private fun initRecyclerView() {
+        filesAdapter.addLoadStateListener { loadStates ->
+            filesLoadStateAdapter.loadState = when (loadStates.refresh) {
+                is LoadState.NotLoading -> loadStates.append
+                else -> loadStates.refresh
+            }
+        }
+
+        binding.recyclerView.adapter = concatAdapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+
 }

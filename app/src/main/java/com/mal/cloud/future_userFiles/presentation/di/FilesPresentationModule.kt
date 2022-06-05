@@ -2,7 +2,7 @@ package com.mal.cloud.future_userFiles.presentation.di
 
 import androidx.recyclerview.widget.DiffUtil
 import com.mal.cloud.future_userFiles.domain.dto.FilesInfo
-import com.mal.cloud.future_userFiles.presentation.adapter.diffUtil.FilesDiffUtil
+import com.mal.cloud.future_userFiles.presentation.fileItemAdapter.diffUtil.FilesDiffUtil
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

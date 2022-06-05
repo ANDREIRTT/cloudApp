@@ -1,4 +1,4 @@
-package com.mal.cloud.future_userFiles.presentation.adapter.diffUtil
+package com.mal.cloud.future_userFiles.presentation.fileItemAdapter.diffUtil
 
 import androidx.recyclerview.widget.DiffUtil
 import com.mal.cloud.future_userFiles.domain.dto.FilesInfo
